@@ -50,16 +50,23 @@ int main(int argc, char *argv[])
         static bool is_going_up = true;
         static int looking_index = 0;
 
+        // check if we're going up
         if (is_going_up)
         {
+            // if so, check if the current demand is greater than current 
+            // cummulative capacity
             if (demand[i] > cumulative_capacity[looking_index])
             {
+                // if so, switch to going down
                 is_going_up = false;
             }
             while (demand[i] > cumulative_capacity[looking_index])
             {
+                // keep incrementing the capacity index until 
+                // it is greater than demand
                 looking_index++;
             }
+            // once capacity index is greater than demand, return that index
             marginal_id[i] = looking_index;
         }
         else
